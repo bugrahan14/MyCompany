@@ -48,14 +48,23 @@ public class DemoSecurityConfig {
                         .requestMatchers("/systems/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
         )
+                // CUSTOM PAGE
                 .formLogin(form ->
                         form
                                 .loginPage("/showMyLoginPage")
                                 .loginProcessingUrl("/authenticateTheUser")
                                 .permitAll()
                 )
+
+                // LOGOUT
                 .logout(logout -> logout.permitAll()
-                );
+                )
+
+
+                // CUSTOM ERROR MESSAGE AND PAGE
+                .exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied"));
+
         return http.build();
     }
 

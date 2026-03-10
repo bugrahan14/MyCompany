@@ -12,7 +12,7 @@ public class DemoController {
         return "home";
     }
 
-    @GetMapping("leaders")
+    @GetMapping("/leaders")
     public String showLeaders(){
         return  "leaders";
     }
